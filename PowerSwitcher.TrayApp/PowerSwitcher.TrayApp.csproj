@@ -68,7 +68,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C0925B3031C5728DBE532A9B74E7090489028E07</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DEA3D7F7594129C0EF81E157371A9AF06BDA175F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>PowerSwitcher.TrayApp_TemporaryKey.pfx</ManifestKeyFile>

@@ -1,0 +1,25 @@
+<Project>
+  <!--
+	Disable ClickOnce manifest signing for local builds when the temporary PFX is missing.
+	Also turn off signing for non-package builds to avoid failing the build when the cert
+	is not available in the user's certificate store.
+  -->
+  <Target Name="DisableManifestSigningForLocalBuilds" BeforeTargets="GenerateApplicationManifest;GenerateManifests">
+	<!-- If we're performing the ReleaseAndPackage build we keep signing enabled. For all other configurations disable signing. -->
+	<PropertyGroup Condition=" '$(Configuration)' != 'ReleaseAndPackage' ">
+	  <SignManifests>false</SignManifests>
+	  <ManifestKeyFile></ManifestKeyFile>
+	  <ManifestCertificateThumbprint></ManifestCertificateThumbprint>
+	</PropertyGroup>
+
+	<!-- If a ManifestKeyFile is specified but the file doesn't exist, also disable signing. -->
+	<PropertyGroup>
+	  <_ManifestPfxPath>$(MSBuildProjectDirectory)\$(ManifestKeyFile)</_ManifestPfxPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(ManifestKeyFile)' != '' and !Exists('$(_ManifestPfxPath)') ">
+	  <SignManifests>false</SignManifests>
+	  <ManifestKeyFile></ManifestKeyFile>
+	  <ManifestCertificateThumbprint></ManifestCertificateThumbprint>
+	</PropertyGroup>
+  </Target>
+</Project>

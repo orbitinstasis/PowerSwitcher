@@ -1,0 +1,8 @@
+<Project>
+  <!-- Ensure ClickOnce manifest signing is disabled for local builds of the TrayApp when repo PFX is missing. -->
+  <PropertyGroup Condition=" '$(MSBuildProjectName)' == 'PowerSwitcher.TrayApp' ">
+	<SignManifests>false</SignManifests>
+	<ManifestKeyFile></ManifestKeyFile>
+	<ManifestCertificateThumbprint></ManifestCertificateThumbprint>
+  </PropertyGroup>
+</Project>
